@@ -4,33 +4,29 @@ import com.google.gson.annotations.SerializedName;
 
 public class Suggestion {
 
-    @SerializedName("comf")
-    public Comfort comfort;
+        @SerializedName("comf")
+        public Comfort comfort;//舒适度
 
-    @SerializedName("cw")
-    public CarWash carWash;
+        @SerializedName("cw")
+        public CarWash carWash;//洗车
 
-    public Sport sport;
+        public Sport sport;//运动
 
-    public class Comfort {
+        public class Comfort {
 
-        @SerializedName("txt")
-        public String info;
+            @SerializedName("txt")
+            public String info;
+        }
 
-    }
+        public class CarWash {
 
-    public class CarWash {
+            @SerializedName("txt")
+            public String info;
+        }
 
-        @SerializedName("txt")
-        public String info;
+        public class Sport {
 
-    }
-
-    public class Sport {
-
-        @SerializedName("txt")
-        public String info;
-
-    }
-
+            @SerializedName("txt")
+            public String info;
+        }
 }

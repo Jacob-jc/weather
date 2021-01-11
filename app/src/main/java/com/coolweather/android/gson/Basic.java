@@ -3,17 +3,15 @@ package com.coolweather.android.gson;
 import com.google.gson.annotations.SerializedName;
 
 public class Basic {
-    @SerializedName("location")
-    public String  cityName;
-
+    @SerializedName("city")
+    public String cityName;
     @SerializedName("id")
-    public String  weatherId;
+    public String weatherId;//对应天气的id
 
     public Update update;
 
-    public class Update{
+    public class Update {
         @SerializedName("loc")
-        public String updateTime;
+        public String updateTime;//天气的更新时间
     }
-
 }

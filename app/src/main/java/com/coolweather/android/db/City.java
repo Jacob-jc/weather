@@ -3,9 +3,6 @@ package com.coolweather.android.db;
 
 import org.litepal.crud.LitePalSupport;
 
-/**
- * Created by walle on 2/15/17.
- */
 
 public class City extends LitePalSupport {
 
