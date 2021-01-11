@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import android.view.*;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,8 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
 
+import androidx.fragment.app.Fragment;
 import com.coolweather.android.db.City;
 import com.coolweather.android.db.County;
 import com.coolweather.android.db.Province;
@@ -23,6 +25,7 @@ import com.coolweather.android.util.Utility;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
 import org.litepal.LitePal;
 
 import java.io.IOException;
@@ -45,26 +48,17 @@ public class ChooseAreaFragment extends Fragment {
     private TextView titleText;
     private Button backButton;
     private ListView listView;
+
     private ArrayAdapter<String> adapter;
     private List<String> dataList = new ArrayList<>();
 
-    //省列表
-    private List<Province> provinceList;
 
-    //市列表
-    private List<City> cityList;
-
-    //县列表
-    private List<County> countyList;
-
-    //选中的省份
-    private Province selectedProvince;
-
-    //选中的城市
-    private City selectedCity;
-
-    //当前选中的级别
-    private int currentLevel;
+    private List<Province> provinceList;    //省列表
+    private List<City> cityList;    //市列表
+    private List<County> countyList;    //县列表
+    private Province selectedProvince;    //选中的省份
+    private City selectedCity;//选中的城市
+    private int currentLevel;   //当前选中的级别
     String address = "http://guolin.tech/api/china/";
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -139,10 +133,9 @@ public class ChooseAreaFragment extends Fragment {
             listView.setSelection(0);
             currentLevel = LEVEL_CITY;
         } else {
-//            int provinceCode = selectedProvince.getProvinceCode();
-//            String address = "http://guolin.tech/api/china/" + provinceCode;
-//            queryFromServer(address, "city");
-            queryFromServer(address + selectedProvince.getProvinceCode(), "city");
+            int provinceCode = selectedProvince.getProvinceCode();
+            String address = "http://guolin.tech/api/china/" + provinceCode;
+            queryFromServer(address, "city");
         }
 
     }
@@ -162,12 +155,10 @@ public class ChooseAreaFragment extends Fragment {
             listView.setSelection(0);
             currentLevel = LEVEL_COUNTY;
         } else {
-//            int provinceCode = selectedProvince.getProvinceCode();
-//            int cityCode = selectedCity.getCityCode();
-//            String address = "http://guolin.tech/api/china/" + provinceCode + "/" + cityCode;
-//            queryFromServer(address, "county");
-            queryFromServer(address + selectedProvince.getProvinceCode() + "/" + selectedCity.getCityCode(), "county");
-
+            int provinceCode = selectedProvince.getProvinceCode();
+            int cityCode = selectedCity.getCityCode();
+            String address = "http://guolin.tech/api/china/" + provinceCode + "/" + cityCode;
+            queryFromServer(address, "county");
         }
     }
     //     * 根据传入的地址和类型从服务器上查询省市县数据。
